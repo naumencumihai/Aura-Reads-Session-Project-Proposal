@@ -1,0 +1,79 @@
+[
+    {
+        "mood": "content",
+        "paragraph_id": 0,
+        "sentiment": "neutral",
+        "type": "description",
+        "type_details": "ebook metadata and table of contents"
+    },
+    {
+        "mood": "anxious",
+        "paragraph_id": 1,
+        "sentiment": "negative",
+        "type": "reflection",
+        "type_details": "narrator's state of being lost and fearful"
+    },
+    {
+        "mood": "anxious",
+        "paragraph_id": 2,
+        "sentiment": "negative",
+        "type": "action",
+        "type_details": "encounter with beasts and a mysterious figure"
+    },
+    {
+        "mood": "hopeful",
+        "paragraph_id": 3,
+        "sentiment": "positive",
+        "type": "dialogue",
+        "type_details": "dialogue between Dante and Virgil"
+    },
+    {
+        "mood": "anxious",
+        "paragraph_id": 4,
+        "sentiment": "negative",
+        "type": "dialogue",
+        "type_details": "Dante's self-doubt and Virgil's reassurance"
+    },
+    {
+        "mood": "hopeful",
+        "paragraph_id": 5,
+        "sentiment": "positive",
+        "type": "dialogue",
+        "type_details": "Virgil recounts Beatrice's divine mission"
+    },
+    {
+        "mood": "hopeful",
+        "paragraph_id": 6,
+        "sentiment": "positive",
+        "type": "dialogue",
+        "type_details": "Virgil's encouragement and Dante's renewed courage"
+    },
+    {
+        "mood": "anxious",
+        "paragraph_id": 7,
+        "sentiment": "negative",
+        "type": "dialogue",
+        "type_details": "entering Hell and learning about the Neutrals"
+    },
+    {
+        "mood": "sad",
+        "paragraph_id": 8,
+        "sentiment": "negative",
+        "type": "description",
+        "type_details": "the punishment of the Neutrals"
+    },
+    {
+        "mood": "angry",
+        "paragraph_id": 9,
+        "sentiment": "negative",
+        "type": "action",
+        "type_details": "Charon's arrival and herding of the damned"
+    },
+    {
+        "mood": "anxious",
+        "paragraph_id": 10,
+        "sentiment": "negative",
+        "type": "action",
+        "type_details": "crossing Acheron and Dante's faint"
+    }
+]
