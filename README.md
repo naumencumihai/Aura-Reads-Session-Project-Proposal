@@ -44,14 +44,19 @@ The primary user is any reader who enjoys music and wants to deepen their connec
 
 ## AI Features to Be Implemented
 
--   **📝 Prompt Engineering & Structured Outputs:** This is fundamental to the application's logic. I will use the LLM's structured output capability (specifically "application/json"`) to ensure the text analysis returns clean, predictable JSON. This is critical because this structured data is the direct input for the music recommendation logic. Its relevance is in providing reliability and eliminating the need for fragile string parsing.
+-   **📝 Prompt Engineering & Structured Outputs:**
+    This is fundamental to the application's logic. I will use the LLM's structured output capability (specifically `"application/json"`) to ensure the text analysis returns clean, predictable JSON. A list of possible values for each field will be specified as context for each prompt (ex: for `mood` some possible values will be: `happy`,`sad`,`angry`, etc.).
 
--   **📊 Retrieval-Augmented Generation (RAG):** The user will have a profile, stored in the database and it will have 2 components
+    This is critical because this structured data is the direct input for the music recommendation logic. Its relevance is in providing reliability and eliminating the need for fragile string parsing.
+
+-   **📊 Retrieval-Augmented Generation (RAG):**
+
+    The user will have a profile, stored in the database and it will have 2 components
 
     -   their literary tastes (from their library, from a form of previous books read or from an integration with a third party books app like Google Books or GoodReads)
     -   musical preferences (from Spotify, if the user chooses to sync their Spotify account with the Aura Reads app)
 
-    this profile will be used as context to "augment" the music selection process. Instead of just asking for a "sad song," the system asks for a "sad song that a fan of indie rock and historical fiction would enjoy." This feature transforms generic mood-matching into a more personalized experience.
+    This profile will be used as context to "augment" the music selection process. Instead of just asking for a "sad song," the system asks for a "sad song that a fan of indie rock and historical fiction would enjoy." This feature transforms generic mood-matching into a more personalized experience.
 
 ## Technical Approach
 
@@ -65,7 +70,7 @@ I will build this application using a modern, type-safe technology stack that I 
 
 -   **AI & Scripting:**
 
-    -   A **local LLM** will be hosted on a separate server to ensure user data privacy and copyright compliance.
+    -   A **local LLM** will be hosted on a separate server to ensure user data privacy and copyright compliance. Considering the complexity of the task, a local LLM should be appropriate for the task (general models such as `Llama 3 8B`, `Mistral 7B`)
 
     -   **Python scripts** will be used to interface with the LLM, leveraging its powerful libraries for generative AI tasks.
 
@@ -131,18 +136,24 @@ This isn't a single prompt but a logic flow.
 
 1.  **Input from Text Analysis:** `{ "mood": "sad", "sentiment": "negative", "type": "contemplation" }`
 
-2.  **Input from RAG (User Profile):** "User reads a lot of `fantasy` books and enjoys `indie rock` and `ambient` music.
-    Top artists include `Arctic Monleys`, `Radiohead` and `Hans Zimmer`."
+2.  **Input from RAG (User Profile):** "User reads a lot of `fantasy` books and enjoys `indie rock` and `orchestral` music.
+    Top artists include `Arctic Monkeys`, `Radiohead` and `Hans Zimmer`."
 
-3.  **Logic:** Map these inputs to Spotify API parameters.
+3.  **Logic:**
 
-    -   `mood: "sad"` -> `target_valence: 0.2`
+    -   For the 'Music library' mode, map these inputs to Spotify API parameters.
 
-    -   `type: "contemplation"` -> `target_energy: 0.3`, `target_tempo: 80`
+        -   `mood: "sad"` -> `target_valence: 0.2`
 
-    -   `User Profile` -> `seed_genres: "indie,ambient"`, `seed_artists: "[ID for Arctic Monleys],[ID for Radiohead],[ID for Hans Zimmer]"`
+        -   `type: "contemplation"` -> `target_energy: 0.3`, `target_tempo: 80`
 
-4.  **Final Spotify API Call:** A query to `/v1/recommendations` is made with these combined parameters.
+        -   `User Profile` -> `seed_genres: "indie,orchestral"`, `seed_artists: "[ID for Arctic Monkeys],[ID for Radiohead],[ID for Hans Zimmer]"`
+
+    -   For the 'Ambiental' mode, a similar mapping approach will be use but parameters will be defined at the music generation phase.
+
+4.  **Song retrieval**
+    -   **Spotify API Call** A query to `/v1/recommendations` is made with these combined parameters.
+    -   **Generated Music Library Call** A query to the server is made, accesing the stored generated ambiental music.
 
 ## Evaluation Strategy
 
