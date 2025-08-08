@@ -55,6 +55,21 @@ The primary user is any reader who enjoys music and wants to deepen their connec
 
     -   their literary tastes (from their library, from a form of previous books read or from an integration with a third party books app like Google Books or GoodReads)
     -   musical preferences (from Spotify, if the user chooses to sync their Spotify account with the Aura Reads app)
+    -   **Retrieved Context** will look something like this:
+
+        ```json
+        {
+        	"user_id": 12,
+        	"literary_tastes": {
+        		"genres": ["historical fiction", "fantasy"],
+        		"authors": ["George R.R. Martin"]
+        	},
+        	"musical_preferences": {
+        		"genres": ["indie rock", "orchestral"],
+        		"artists": ["Arctic Monkeys", "Radiohead", "Hans Zimmer"]
+        	}
+        }
+        ```
 
     This profile will be used as context to "augment" the music selection process. Instead of just asking for a "sad song," the system asks for a "sad song that a fan of indie rock and historical fiction would enjoy." This feature transforms generic mood-matching into a more personalized experience.
 
